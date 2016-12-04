@@ -9,6 +9,10 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EntityFramework.LoggableDbC
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EntityFrameworkCore.LoggableDbContext", "src\EntityFrameworkCore.LoggableDbContext\EntityFrameworkCore.LoggableDbContext.xproj", "{ED6D98E3-566A-4032-BC97-319DC858AA27}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{7935938A-5B2E-4FC5-A741-9695C733BB78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbConfigurationSample", "samples\DbConfigurationSample\DbConfigurationSample.csproj", "{F99197D1-1294-4C1D-9AAE-EAF6CCAEFB14}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +27,10 @@ Global
 		{ED6D98E3-566A-4032-BC97-319DC858AA27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED6D98E3-566A-4032-BC97-319DC858AA27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED6D98E3-566A-4032-BC97-319DC858AA27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F99197D1-1294-4C1D-9AAE-EAF6CCAEFB14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F99197D1-1294-4C1D-9AAE-EAF6CCAEFB14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F99197D1-1294-4C1D-9AAE-EAF6CCAEFB14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F99197D1-1294-4C1D-9AAE-EAF6CCAEFB14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,5 +38,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{8872F5F1-0095-4C09-931C-4E044568A630} = {43EC3791-AEC2-4180-8456-55248A9B4B7C}
 		{ED6D98E3-566A-4032-BC97-319DC858AA27} = {43EC3791-AEC2-4180-8456-55248A9B4B7C}
+		{F99197D1-1294-4C1D-9AAE-EAF6CCAEFB14} = {7935938A-5B2E-4FC5-A741-9695C733BB78}
 	EndGlobalSection
 EndGlobal

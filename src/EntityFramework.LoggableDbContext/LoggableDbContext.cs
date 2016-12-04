@@ -1,4 +1,4 @@
-﻿//using System.Data.Common;
+﻿using System.Data.Common;
 using System.Collections.Generic;
 using System.Data.Entity.Configuration;
 using System.Data.Entity.Core.Metadata.Edm;
@@ -35,11 +35,11 @@ namespace System.Data.Entity
             InitInternal(userId);
         }
 
-        //public LoggableDbContext(int userId, DbConnection existingConnection, bool contextOwnsConnection)
-        //    : base(existingConnection, contextOwnsConnection)
-        //{
-        //    InitInternal(userId);
-        //}
+        public LoggableDbContext(int userId, DbConnection existingConnection, bool contextOwnsConnection)
+            : base(existingConnection, contextOwnsConnection)
+        {
+            InitInternal(userId);
+        }
 
         public DbSet<DatabaseLog> DatabaseLog { get; set; }
         public DbSet<EntityLog> EntityLog { get; set; }
@@ -135,56 +135,6 @@ namespace System.Data.Entity
 
             //HasRequired(x => x.EntityLog).WithMany().HasForeignKey(x => x.EntityLogId);
         }
-
-
-        //public DatabaseLog LogEntityProperties(string entityTypeName, string entityKey, string entityKeyValue, string propertyName, string oldValue, string newValue, DatabaseLog dbLog = null)
-        //{
-        //    return LogEntityProperties(entityTypeName,
-        //        entityTypeName,
-        //        entityKey,
-        //        entityKeyValue,
-        //        true,
-        //        new List<EntityPropertiesLog>
-        //        {
-        //            new EntityPropertiesLog
-        //            {
-        //                PropertyName = propertyName,
-        //                OldValue = oldValue,
-        //                NewValue = newValue
-        //            }
-        //        },
-        //        dbLog);
-        //}
-
-        //public DatabaseLog LogEntityProperties(string entityTypeName, string entityTypeFullName, string entityKey, string entityKeyValue, bool hasMultipleKey, List<EntityPropertiesLog> entityProperties, DatabaseLog dbLog = null)
-        //{
-        //    if (entityProperties == null || !entityProperties.Any())
-        //        throw new ArgumentException("Entity properties is required.");
-
-        //    if (dbLog == null)
-        //    {
-        //        dbLog = new DatabaseLog()
-        //        {
-        //            Timestamp = DateTime.Now,
-        //            UserId = UserId
-        //        };
-        //    }
-
-        //    var dbEntityLog = new EntityLog()
-        //    {
-        //        DatabaseLog = dbLog,
-        //        TypeName = entityTypeName,
-        //        TypeFullName = entityTypeFullName,
-        //        EntityKey = entityKey,
-        //        EntityKeyValue = entityKeyValue,
-        //        HasMultipleKey = hasMultipleKey
-        //    };
-
-        //    entityProperties.ForEach(x => x.EntityLog = dbEntityLog);
-        //    this.EntityPropertiesLog.AddRange(entityProperties);
-
-        //    return dbLog;
-        //}
 
         public override int SaveChanges()
         {
@@ -359,12 +309,12 @@ namespace System.Data.Entity
 
         #region Utility Methods
 
-        public static List<EdmProperty> GetEntityKeys(DbContext context, object entity)
+        private static List<EdmProperty> GetEntityKeys(DbContext context, object entity)
         {
             return GetEntityKeys(((IObjectContextAdapter)context).ObjectContext, entity);
         }
 
-        public static List<EdmProperty> GetEntityKeys(ObjectContext context, object entity)
+        private static List<EdmProperty> GetEntityKeys(ObjectContext context, object entity)
         {
             if (entity == null)
                 throw new ArgumentNullException("entity must be specified.");
@@ -377,12 +327,12 @@ namespace System.Data.Entity
             return entityKeys;
         }
 
-        public static List<EdmProperty> GetEntityKeys<T>(DbContext context, T entity) where T : class
+        private static List<EdmProperty> GetEntityKeys<T>(DbContext context, T entity) where T : class
         {
             return GetEntityKeys<T>(((IObjectContextAdapter)context).ObjectContext, entity);
         }
 
-        public static List<EdmProperty> GetEntityKeys<T>(ObjectContext context, T entity) where T : class
+        private static List<EdmProperty> GetEntityKeys<T>(ObjectContext context, T entity) where T : class
         {
             if (entity == null)
                 throw new ArgumentNullException("entity must be specified.");
@@ -390,7 +340,7 @@ namespace System.Data.Entity
             return context.CreateObjectSet<T>().EntitySet.ElementType.KeyProperties.ToList();
         }
 
-        public static List<object> GetEntityKeyValues(List<EdmProperty> keyProperties, DbEntityEntry entry)
+        private static List<object> GetEntityKeyValues(List<EdmProperty> keyProperties, DbEntityEntry entry)
         {
             if (keyProperties == null)
                 throw new ArgumentNullException("keyProperties");
