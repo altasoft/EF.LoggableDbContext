@@ -18,10 +18,16 @@ namespace System.Data.Entity.Configuration
             return CreateModelConfiguration(true);
         }
 
-        public LoggableEntityPropertyIgnoreConfiguration<TEntity> CreateModelConfiguration(bool isSnapshot)
+        protected LoggableEntityPropertyIgnoreConfiguration<TEntity> CreateModelConfiguration(bool isSnapshot)
         {
             if (!Config.ContainsKey(TypeName))
-                Config.Add(TypeName, new LogModelConfiguration() { IsLoggable = true, IsSnapshot = isSnapshot });
+            {
+                Config.Add(TypeName, new LogModelConfiguration()
+                {
+                    IsLoggable = true,
+                    IsSnapshot = isSnapshot
+                });
+            }
             else
             {
                 Config[TypeName].IsLoggable = true;

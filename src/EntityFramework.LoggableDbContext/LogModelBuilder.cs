@@ -5,17 +5,12 @@ namespace System.Data.Entity
 {
     public sealed class LogModelBuilder
     {
-        public bool LogAllEntities { get; set; }
+        public bool LogAllEntities { get; set; } = true;
 
         /// <summary>
         /// Key - Entity FullName (include namespace)
         /// </summary>
         public Dictionary<string, LogModelConfiguration> Configurations { get; private set; }
-
-        public LogModelBuilder()
-        {
-            LogAllEntities = true;
-        }
 
         public LoggableEntityConfiguration<TEntity> Entity<TEntity>() where TEntity : class
         {
