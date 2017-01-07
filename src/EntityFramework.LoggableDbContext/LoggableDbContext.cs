@@ -173,7 +173,7 @@ namespace System.Data.Entity
 
                 foreach (var entry in entries)
                 {
-                    if (!IsEntityLogable(entry.Entity))
+                    if (!IsEntityLoggable(entry.Entity))
                         continue;
 
                     EntityLog entityLog = new EntityLog() { DatabaseLog = dbLog };
@@ -241,7 +241,7 @@ namespace System.Data.Entity
                         {
                             propertiesLog.AddRange(GenerateEntityPropertiesLog(null, (DbPropertyValues)propValue, config, entityPropName));
                         }
-                        else if (IsEntityPropertyLogable(config, entityPropName))
+                        else if (IsEntityPropertyLoggable(config, entityPropName))
                         {
                             propertiesLog.Add(new EntityPropertiesLog()
                             {
@@ -267,7 +267,7 @@ namespace System.Data.Entity
                         {
                             propertiesLog.AddRange(GenerateEntityPropertiesLog(propValueOld as DbPropertyValues, propValueNew as DbPropertyValues, config, entityPropName));
                         }
-                        else if (IsEntityPropertyLogable(config, entityPropName))
+                        else if (IsEntityPropertyLoggable(config, entityPropName))
                         {
                             propertiesLog.Add(new EntityPropertiesLog()
                             {
@@ -292,7 +292,7 @@ namespace System.Data.Entity
                         {
                             propertiesLog.AddRange(GenerateEntityPropertiesLog((DbPropertyValues)propValue, null, config, entityPropName));
                         }
-                        else if (IsEntityPropertyLogable(config, entityPropName))
+                        else if (IsEntityPropertyLoggable(config, entityPropName))
                         {
                             propertiesLog.Add(new EntityPropertiesLog()
                             {
@@ -359,7 +359,7 @@ namespace System.Data.Entity
             return result;
         }
 
-        private bool IsEntityLogable(object entity)
+        private bool IsEntityLoggable(object entity)
         {
             if (_logModelBuilder.Configurations == null)
                 return _logModelBuilder.LogAllEntities;
@@ -368,7 +368,7 @@ namespace System.Data.Entity
 
             if (_logModelBuilder.Configurations.TryGetValue(entity.GetType().FullName, out config))
             {
-                if (!config.IsLogable)
+                if (!config.IsLoggable)
                     return false;
 
                 if (config.IgnoreAllProperties && (config.Properties == null || !config.Properties.Any(x => x.Value == true)))
@@ -381,7 +381,7 @@ namespace System.Data.Entity
         }
 
         // todo: unda daematos property-is tipze shemowmebac (type ignore)
-        private bool IsEntityPropertyLogable(LogModelConfiguration config, string propertyName)
+        private bool IsEntityPropertyLoggable(LogModelConfiguration config, string propertyName)
         {
             if (config == null)
                 return true;

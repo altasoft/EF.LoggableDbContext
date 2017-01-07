@@ -21,10 +21,10 @@ namespace System.Data.Entity.Configuration
         public LoggableEntityPropertyIgnoreConfiguration<TEntity> CreateModelConfiguration(bool isSnapshot)
         {
             if (!Config.ContainsKey(TypeName))
-                Config.Add(TypeName, new LogModelConfiguration() { IsLogable = true, IsSnapshot = isSnapshot });
+                Config.Add(TypeName, new LogModelConfiguration() { IsLoggable = true, IsSnapshot = isSnapshot });
             else
             {
-                Config[TypeName].IsLogable = true;
+                Config[TypeName].IsLoggable = true;
                 Config[TypeName].IsSnapshot = isSnapshot;
             }
 
@@ -33,7 +33,7 @@ namespace System.Data.Entity.Configuration
 
         public void Ignore()
         {
-            Config[TypeName] = new LogModelConfiguration() { IsLogable = false };
+            Config[TypeName] = new LogModelConfiguration() { IsLoggable = false };
         }
     }
 }

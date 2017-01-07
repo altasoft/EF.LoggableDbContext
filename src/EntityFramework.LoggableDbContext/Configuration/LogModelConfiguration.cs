@@ -5,9 +5,9 @@ namespace System.Data.Entity.Configuration
     public class LogModelConfiguration
     {
         /// <summary>
-        /// Is whole entity logable
+        /// Is whole entity loggable
         /// </summary>
-        public bool IsLogable { get; set; }
+        public bool IsLoggable { get; set; }
 
         public bool IgnoreAllProperties { get; set; }
 
@@ -21,7 +21,7 @@ namespace System.Data.Entity.Configuration
 
         public LogModelConfiguration()
         {
-            IsLogable = true;
+            IsLoggable = true;
             IgnoreAllProperties = false;
         }
     }
